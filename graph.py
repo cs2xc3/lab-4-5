@@ -29,8 +29,14 @@ class Graph:
     def number_of_nodes(self):
         return len(self.adj)
 
+# returns the maximum number of unique edges for a graph i nodes
+def max_unique_edges(i: int, self_loops = False) -> int:
+    if not self_loops:
+        return (i - 1) * i // 2
+    return i * (i + 1) // 2
+
 def create_random_graph(i: int, j: int) -> Graph:
-    if (j > (i - 1) * i / 2):
+    if (j > max_unique_edges(i)):
         raise ValueError(f'Cannot create {j} unique edges for {i} nodes')
 
     E = Graph(i)
