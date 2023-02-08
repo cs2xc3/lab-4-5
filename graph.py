@@ -26,8 +26,8 @@ class Graph:
         self.adj[node1].remove(node2)
         self.adj[node2].remove(node1)
 
-    def number_of_nodes():
-        return len()
+    def number_of_nodes(self):
+        return len(self.adj)
 
 def create_random_graph(i: int, j: int) -> Graph:
     if (j > (i - 1) * i / 2):
@@ -106,7 +106,6 @@ def BFS3(G, node):
                 Q.append(n)
                 marked[n] = True
                 preDict[n] = current_node
-    print(preDict)
     return preDict
 
 
@@ -124,5 +123,9 @@ def DFS3(G, node):
                 if not marked[n]:
                     preDict[n] = current_node
                 S.append(n)
-    print(preDict)
     return preDict
+
+def is_connected(G: Graph) -> bool:
+    if G.number_of_nodes() == 0:
+        return True
+    return len(BFS3(G, 0)) + 1 == G.number_of_nodes()
