@@ -97,6 +97,49 @@ def DFS(G, node1, node2):
                 S.append(node)
     return False
 
+#Depth First search remembering path
+def DFS2(G, node1, node2):
+    S = [node1]
+    marked = {}
+    L = []
+    downstep = []
+
+    for node in G.adj:
+        marked[node] = False
+
+    while len(S) != 0:
+        current_node = S.pop()
+        L.append(current_node)
+        downstep.append(G.adjacent_nodes(current_node))
+        if not marked[current_node]:
+            marked[current_node] = True
+            for node in G.adj[current_node]:
+                if node == node2:
+                    L.append(node)
+                    if L.count(node1) > 1:
+                        return DFShelper(L, node1)
+                    return L
+                S.append(node)
+
+# Breadth First Search remembering path
+def BFS2(G, node1, node2):
+    Q = deque([[node1]])
+    marked = {node1 : True}
+    for node in G.adj:
+        if node != node1:
+            marked[node] = False
+    while len(Q) != 0:
+        current_path = Q.popleft()
+        for node in G.adj[current_path[-1]]:
+            if node == node2:
+                current_path.append(node)
+                return current_path
+            if not marked[node]:
+                next_path = current_path.copy()
+                next_path.append(node)
+                Q.append(next_path)
+                marked[node] = True
+    return []
 
 def BFS3(G, node):
     Q = deque([node])
