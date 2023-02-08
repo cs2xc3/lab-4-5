@@ -29,9 +29,10 @@ class Graph:
     def number_of_nodes(self):
         return len(self.adj)
 
+
 def create_random_graph(i: int, j: int) -> Graph:
-    if (j > (i - 1) * i / 2):
-        raise ValueError(f'Cannot create {j} unique edges for {i} nodes')
+    if j > (i - 1) * i / 2:
+        raise ValueError(f"Cannot create {j} unique edges for {i} nodes")
 
     E = Graph(i)
     G = Graph(i)
@@ -125,7 +126,33 @@ def DFS3(G, node):
                 S.append(n)
     return preDict
 
+
 def is_connected(G: Graph) -> bool:
     if G.number_of_nodes() == 0:
         return True
     return len(BFS3(G, 0)) + 1 == G.number_of_nodes()
+
+
+def has_cycle(G):
+    nodes = range(G.number_of_nodes())
+    while len(nodes) != 0:
+        S = [nodes[0]]
+        marked = {}
+        preDict = {}
+        for n in G.adj:
+            marked[n] = False
+        while len(S) != 0:
+            current_node = S.pop()
+            if not marked[current_node]:
+                marked[current_node] = True
+                nodes.remove(current_node)
+                # print("REMOVED " + str(current_node))
+                for n in G.adj[current_node]:
+                    # print(str(current_node) + "->" + str(n))
+                    if nodes.count(n) == 0 and preDict[current_node] != n:
+                        print(True)
+                        return True
+                    if not marked[n]:
+                        preDict[n] = current_node
+                    S.append(n)
+    return False
