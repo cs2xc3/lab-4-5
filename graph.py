@@ -1,4 +1,5 @@
 from collections import deque
+import random
 
 #Undirected graph using an adjacency list
 class Graph:
@@ -18,12 +19,43 @@ class Graph:
         self.adj[len(self.adj)] = []
 
     def add_edge(self, node1, node2):
-        if node1 not in self.adj[node2]:
+        if not self.are_connected(node1, node2):
             self.adj[node1].append(node2)
             self.adj[node2].append(node1)
 
+    def remove_edge(self, node1, node2):
+        self.adj[node1].remove(node2)
+        self.adj[node2].remove(node1)
+
     def number_of_nodes():
         return len()
+
+def create_random_graph(i: int, j: int) -> Graph:
+    if (j > (i - 1) * i / 2):
+        raise ValueError(f'Cannot create {j} unique edges for {i} nodes')
+
+    E = Graph(i)
+    G = Graph(i)
+
+    for node_a in range(i):
+        for node_b in range(node_a + 1, i):
+            E.add_edge(node_a, node_b)
+
+    unsaturated_nodes = [n for n in range(i)]
+
+    while j > 0:
+        node_a = random.choice(unsaturated_nodes)
+
+        if len(E.adj[node_a]) == 0:
+            unsaturated_nodes.remove(node_a)
+            continue
+
+        node_b = random.choice(E.adj[node_a])
+        G.add_edge(node_a, node_b)
+        E.remove_edge(node_a, node_b)
+        j -= 1
+
+    return G
 
 
 #Breadth First Search
