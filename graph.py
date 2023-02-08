@@ -134,7 +134,7 @@ def is_connected(G: Graph) -> bool:
 
 
 def has_cycle(G):
-    nodes = range(G.number_of_nodes())
+    nodes = list(range(G.number_of_nodes()))
     while len(nodes) != 0:
         S = [nodes[0]]
         marked = {}
