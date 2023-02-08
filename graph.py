@@ -1,8 +1,7 @@
 from collections import deque
 
-#Undirected graph using an adjacency list
+# Undirected graph using an adjacency list
 class Graph:
-
     def __init__(self, n):
         self.adj = {}
         for i in range(n):
@@ -26,10 +25,10 @@ class Graph:
         return len()
 
 
-#Breadth First Search
+# Breadth First Search
 def BFS(G, node1, node2):
     Q = deque([node1])
-    marked = {node1 : True}
+    marked = {node1: True}
     for node in G.adj:
         if node != node1:
             marked[node] = False
@@ -44,7 +43,7 @@ def BFS(G, node1, node2):
     return False
 
 
-#Depth First Search
+# Depth First Search
 def DFS(G, node1, node2):
     S = [node1]
     marked = {}
@@ -59,3 +58,39 @@ def DFS(G, node1, node2):
                     return True
                 S.append(node)
     return False
+
+
+def BFS3(G, node):
+    Q = deque([node])
+    marked = {node: True}
+    preDict = {}
+    for n in G.adj:
+        if n != node:
+            marked[n] = False
+    while len(Q) != 0:
+        current_node = Q.popleft()
+        for n in G.adj[current_node]:
+            if not marked[n]:
+                Q.append(n)
+                marked[n] = True
+                preDict[n] = current_node
+    print(preDict)
+    return preDict
+
+
+def DFS3(G, node):
+    S = [node]
+    marked = {}
+    preDict = {}
+    for n in G.adj:
+        marked[n] = False
+    while len(S) != 0:
+        current_node = S.pop()
+        if not marked[current_node]:
+            marked[current_node] = True
+            for n in G.adj[current_node]:
+                if not marked[n]:
+                    preDict[n] = current_node
+                S.append(n)
+    print(preDict)
+    return preDict
