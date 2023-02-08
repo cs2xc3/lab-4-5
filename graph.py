@@ -151,13 +151,11 @@ def has_cycle(G):
             if not marked[current_node]:
                 marked[current_node] = True
                 nodes.remove(current_node)
-                # print("REMOVED " + str(current_node))
                 for n in G.adj[current_node]:
-                    # print(str(current_node) + "->" + str(n))
                     if nodes.count(n) == 0 and preDict[current_node] != n:
-                        print(True)
                         return True
                     if not marked[n]:
                         preDict[n] = current_node
                     S.append(n)
     return False
+
