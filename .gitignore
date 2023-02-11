@@ -10,3 +10,7 @@ __pycache__
 *.log
 *.synctex.gz
 *.toc
+*.pdf
+
+# System
+.DS_Store
