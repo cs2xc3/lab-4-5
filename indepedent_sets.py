@@ -14,16 +14,16 @@ if __name__ == "__main__":
 
     for edges in edge_cases:
         print(f"Trying {edges} / {max_edges} edges")
-        mvc_lens = []
-        mis_lens = []
+        mvc_sum = 0
+        mis_sum = 0
 
         for c in range(CASES):
             G = create_random_graph(NODES, edges)
-            mvc_lens.append(len(MVC(G)))
-            mis_lens.append(len(MIS(G)))
+            mvc_sum += len(MVC(G))
+            mis_sum += len(MIS(G))
 
-        average_mvc_lens.append(sum(mvc_lens) / CASES)
-        average_mis_lens.append(sum(mis_lens) / CASES)
+        average_mvc_lens.append(mvc_sum / CASES)
+        average_mis_lens.append(mis_sum / CASES)
 
     sums = [average_mvc_lens[i] + average_mis_lens[i] for i in range(len(edge_cases))]
 

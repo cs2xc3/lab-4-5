@@ -85,12 +85,22 @@ This is because the maximum number of unique edges --- and thus the number of wa
 
 \subsection{Maximum Independent Sets}
 
+To determine the relationship between minimum vertex covers (MVC) and maximum independent sets (MIS), we compared their average size for graphs of 10 nodes with 0 to 45 edges; the maximum for a graph of 10 nodes. At each number of edges, we found the MVC and MIS for 250 graphs and calculated the average length of each, as well as the sum of the average lengths. The results were then graphed as shown in Figure \ref{fig:mvc_mis} below.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{mvc_mis.png}
     \caption{Relation between MVC and MIS}
     \label{fig:mvc_mis}
 \end{figure}
+
+As seen in Figure \ref{fig:mvc_mis}, the average MIS length decreased as the number of edges increased, while the average MVC length increased. Further, their sum was exactly equal to the number of nodes.
+
+Looking closer, we can see that at 0 edges the MVC was empty while the MIS contained all nodes. This is expected because every node can be added to the MIS without connecting to another node, and there are no edge endpoints to be included in the MVC.
+
+At the maximum number of edges, the MIS contains only one node while the MVC contains $n-1$ nodes. This is also expected, because the single node in the MIS connects to all other nodes, and the single node left out of the MVC has every edge taken care of by a node it is connected to.
+
+These three observations leads us to the conclusion that the MVC of a graph is the complement of the MIS.
 
 \appendix
 \section{Navigating the Code}
