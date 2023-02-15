@@ -182,8 +182,10 @@ def is_connected(G: Graph) -> bool:
 
 
 def has_cycle(G):
+    # prospective list of nodes
     nodes = list(range(G.number_of_nodes()))
     while len(nodes) != 0:
+        # if loops, there are multiple connected components
         S = [nodes[0]]
         marked = {}
         preDict = {}
@@ -193,13 +195,19 @@ def has_cycle(G):
             current_node = S.pop()
             if not marked[current_node]:
                 marked[current_node] = True
+                # node has been visited, is connected so removed
                 nodes.remove(current_node)
+                # print("REMOVED " + str(current_node))
                 for n in G.adj[current_node]:
+                    # print(str(current_node) + "->" + str(n))
+                    # if node has been visited and another node connects to it, cycle exists
                     if nodes.count(n) == 0 and preDict[current_node] != n:
+                        print(True)
                         return True
                     if not marked[n]:
                         preDict[n] = current_node
                     S.append(n)
+    print(False)
     return False
 
 #Use the methods below to determine minimum vertex covers
