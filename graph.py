@@ -29,6 +29,14 @@ class Graph:
     def number_of_nodes(self):
         return len(self.adj)
 
+    def copy(self):
+        new_graph = Graph(self.number_of_nodes())
+        for node_a in range(self.number_of_nodes()):
+            for node_b in self.adj[node_a]:
+                new_graph.add_edge(node_a, node_b)
+        return new_graph
+
+
 # returns the maximum number of unique edges for a graph i nodes
 def max_unique_edges(i: int, self_loops = False) -> int:
     if not self_loops:
