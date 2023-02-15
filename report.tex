@@ -63,9 +63,9 @@ This process is conducted for graphs with 5, 10, 25, and 50 nodes at different p
 
 % this is wrong v will rewrite
 
-% As seen in Figure \ref{fig:edges_vs_connected}, each graph size sits at a 0\% chance of connectedness before rapidly increasing and eventually reaching a 100\% probability of being connected; but the transitions take place at different edge proportions.
+As seen in Figure \ref{fig:edges_vs_connected}, each graph sits at a 0\% chance of connectedness before rapidly increasing and eventually reaching a 100\% probability of being connected. However, the proportion of edges at which the probability starts and stops rising increases with the number of nodes.
 
-% This is because the number of edges required to make connectedness possible grows linearly with the number of nodes, while the maximum number of unique edges grows quadratically. Specifically, an undirected graph of $n$ nodes with no self-loops requires only $n - 1$ unique edges to make connectedness possible, but can have a maximum of $\frac{(n - 1) \cdot n}{2}$ unique edges.
+This is because the maximum number of unique edges --- and thus the number of ways the graph can be disconnected --- grows quadratically with the number of nodes. Specifically, a graph of $n$ nodes with no self-loops can have a maximum of $\Sigma_{i=0}^{n-1}i = \frac{(n - 1) \cdot n}{2}$ unique edges. This means a graph of 5 nodes has already reached it's maximum number of edges (10) by 200\%, while a graph of 50 nodes will not reach it's maximum number of edges (1225) until 2450\%.
 
 \section{Part 2}
 
