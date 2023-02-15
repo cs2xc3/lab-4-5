@@ -138,7 +138,8 @@ def DFShelper(L, node1):
             L = L[:i+1]
             L.reverse()
             return L
-    return L.reverse()
+    L.reverse()
+    return L
 
 # Breadth First Search remembering path
 def BFS2(G, node1, node2):
