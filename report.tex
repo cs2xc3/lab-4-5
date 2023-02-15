@@ -41,9 +41,7 @@ Experiment 2 examines the probability of a graph being connected as the proporti
 
 We compute the approximate connected probability for a graph of $e$ edges and $n$ nodes by generating 500 random graphs with $e$ edges and $n$ nodes and determining what percentage of those graphs are connected.
 
-This process is conducted for graphs with 5, 10, 25, and 50 nodes at different proportions of edges. Specifically, we start with 0 edges and gradually increase to the maximum number of unique edges for the node count ($\sum_{i=0}^{n-1}i$) in 4\% steps, with 100\% being the maximum number of edges.
-
-The result is then graphed as shown in Figure \ref{fig:edges_vs_connected} below.
+This process is conducted for graphs with 5, 10, 25, and 50 nodes at different proportions of edges. Specifically, we start with 0 edges and gradually increase to 500\% the node count in 20\% increments. The result is then graphed as shown in Figure \ref{fig:edges_vs_connected} below.
 
 \begin{figure}[H]
     \centering
@@ -52,9 +50,11 @@ The result is then graphed as shown in Figure \ref{fig:edges_vs_connected} below
     \label{fig:edges_vs_connected}
 \end{figure}
 
-As seen in Figure \ref{fig:edges_vs_connected}, each graph size sits at a 0\% chance of connectedness before rapidly increasing and eventually reaching a 100\% probability of being connected; but the transitions take place at different edge proportions.
+% this is wrong v will rewrite
 
-This is because the number of edges required to make connectedness possible grows linearly with the number of nodes, while the maximum number of unique edges grows quadratically. Specifically, an undirected graph of $n$ nodes with no self-loops requires only $n - 1$ unique edges to make connectedness possible, but can have a maximum of $\frac{(n - 1) \cdot n}{2}$ unique edges.
+% As seen in Figure \ref{fig:edges_vs_connected}, each graph size sits at a 0\% chance of connectedness before rapidly increasing and eventually reaching a 100\% probability of being connected; but the transitions take place at different edge proportions.
+
+% This is because the number of edges required to make connectedness possible grows linearly with the number of nodes, while the maximum number of unique edges grows quadratically. Specifically, an undirected graph of $n$ nodes with no self-loops requires only $n - 1$ unique edges to make connectedness possible, but can have a maximum of $\frac{(n - 1) \cdot n}{2}$ unique edges.
 
 \section{Part 2}
 

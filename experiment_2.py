@@ -12,11 +12,11 @@ def average_probabilities(
     avgs: int,
     func: Callable[[Graph], bool]
 ) -> List[float]:
-    maximum_edges = max_unique_edges(num_nodes)
+    max_edges = max_unique_edges(num_nodes)
     probabilities = []
 
     for proportion in proportions:
-        edges = int(proportion / 100 * maximum_edges)
+        edges = min(int(proportion / 100 * num_nodes), max_edges)
         outcomes = []
 
         for _ in range(avgs):
@@ -33,7 +33,7 @@ def average_probabilities(
 
 
 if __name__ == "__main__":
-    proportions = list(range(0, 100, 100 // STEPS))
+    proportions = list(range(0, 500, 500 // STEPS))
 
     for num_nodes in NODE_CASES:
         plot.plot(
@@ -44,6 +44,6 @@ if __name__ == "__main__":
 
     plot.title("Proportion of edges vs connected probability")
     plot.ylabel("Connected probability (%)")
-    plot.xlabel("Proportion of edges (%)")
+    plot.xlabel("Proportion of edges to nodes (%)")
     plot.legend()
     plot.show()
