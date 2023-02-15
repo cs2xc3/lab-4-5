@@ -244,5 +244,14 @@ def MVC(G):
                 min_cover = subset
     return min_cover
 
-
+# Approximations
+def approx2(G):
+    nodeSet = []
+    while not is_vertex_cover(G, nodeSet):
+        v = random.randint(0, G.number_of_nodes())
+        while v in nodeSet:
+            v = random.randint(0, G.number_of_nodes())
+        nodeSet.append(v)
+    print(nodeSet)
+    return nodeSet
 
