@@ -7,7 +7,7 @@ STEPS = 25
 AVGS = 500
 
 if __name__ == "__main__":
-    proportions = list(range(0, 100, 100 // STEPS))
+    proportions = list(range(0, 125, 125 // STEPS))
 
     for num_nodes in NODE_CASES:
         plot.plot(

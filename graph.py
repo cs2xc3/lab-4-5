@@ -133,6 +133,17 @@ def DFS2(G, node1, node2):
                 S.append(node)
 
 
+def DFShelper(L, node1):
+    L.reverse()
+    for i in range(len(L)):
+        if L[i] == node1:
+            L = L[:i+1]
+            L.reverse()
+            return L
+    L.reverse()
+    return L
+
+
 # Breadth First Search remembering path
 def BFS2(G, node1, node2):
     Q = deque([[node1]])
@@ -252,6 +263,25 @@ def MVC(G):
     return min_cover
 
 # Approximations
+
+def approx1(G):
+    G2 = G.copy()
+    C  = []
+    while not is_vertex_cover(G2, C):
+        v = find_highest_degree(G2)
+        C.append(v)
+        for j in G2.adj[v]:
+            G2.remove_edge(v, j)
+    return C
+
+def find_highest_degree(G):         #helper for approx1
+    highest_degree      = 0
+    highest_degree_node = -1
+    for i in G.adj:
+        if len(G.adj[i]) > highest_degree:
+            highest_degree      = len(G.adj[i]) 
+            highest_degree_node = i
+    return highest_degree_node 
 
 def approx2(G):
     nodeSet = []
