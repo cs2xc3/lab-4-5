@@ -12,7 +12,7 @@ class Graph:
     def are_connected(self, node1, node2):
         return node2 in self.adj[node1]
 
-    def adjacent_nodes(self, node):
+    def adjacent_nodes(self, node) -> List[int]:
         return self.adj[node]
 
     def add_node(self):
@@ -31,8 +31,10 @@ class Graph:
         return len(self.adj)
 
     def copy(self):
-        new_graph = Graph(0)
-        new_graph.adj = [edges.copy() for edges in self.adj]
+        new_graph = Graph(self.number_of_nodes())
+        for node_a in range(self.number_of_nodes()):
+            for node_b in self.adjacent_nodes(node_a):
+                new_graph.add_edge(node_a, node_b)
         return new_graph
 
 
@@ -256,3 +258,27 @@ def approx2(G):
 
     return nodeSet
 
+def approx3(G: Graph) -> List[int]:
+    node_options = list(range(G.number_of_nodes()))
+    G_copy = G.copy()
+    C = []
+
+    while len(node_options) > 0:
+        node_a = random.choice(node_options)
+        node_options.remove(node_a)
+
+        if len(G_copy.adjacent_nodes(node_a)) == 0:
+            continue
+
+        node_b = random.choice(G_copy.adjacent_nodes(node_a))
+        node_options.remove(node_b)
+
+        for adj_node in G_copy.adjacent_nodes(node_a).copy():
+            G_copy.remove_edge(node_a, adj_node)
+        for adj_node in G_copy.adjacent_nodes(node_b).copy():
+            G_copy.remove_edge(node_b, adj_node)
+
+        C.append(node_a)
+        C.append(node_b)
+
+    return C
