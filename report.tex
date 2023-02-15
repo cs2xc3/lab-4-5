@@ -27,13 +27,13 @@
 
 \subsection{Experiment 1}
 
-Experiment 1 examines the probability of a graph containing cycles as the number of edges increases.
+Experiment 1 examines the probability of a graph containing cycles as the proportion of edges to nodes increases.
 
-The probability of the graph containing a cycle was computed by generating 500 random graphs containing $e$ edges, alongside $n$ nodes, and observing how many were cyclical.
+The probability of a graph containing a cycle was computed by generating 500 random graphs with a given number of edges and nodes, and observing how many were cyclical.
 
-We completed this process for graphs containing 5, 10, 15 and 20 nodes, with the proportion of edges varying from 0\% to 120\%, with increments of 20\%.
+We completed this process for graphs containing 5, 10, 15 and 20 nodes, with the proportion of edges varying from 0\% to 120\%, in increments of 20\%.
 
-The result is graphed in Figure 1 below
+The result was then graphed in Figure 1 below.
 
 \begin{figure}[H]
     \centering
@@ -42,9 +42,9 @@ The result is graphed in Figure 1 below
     \label{fig:edges_vs_cycle}
 \end{figure}
 
-We have concluded from our results that as proportion of edges relative to the number of nodes increases, the cyclical probability grows, ultimately showing a direct correlation. As the number of nodes increases, the probability of a graph containing a cycle - with the same relative proportions - increases, showing another direct correlation
+We have concluded from our results that as the proportion of edges relative to the number of nodes increases, the cyclical probability grows, showing a direct correlation. As the number of nodes increases, the probability of a graph containing a cycle - with the same relative proportions - increases, showing another direct correlation
 
-Additionally, once the proportion of edges to nodes is slightly beyond 100\%, there will be a graph in the cycle, regardless of the number of nodes. This is expected as any graph with more edges than nodes must contain a cycle.
+Additionally, once the proportion of edges to nodes is 100\%, there will always be a cycle in the graph, regardless of the number of nodes. This is expected as any graph with equal or more edges than nodes must contain a cycle.
 
 \subsection{Experiment 2}
 

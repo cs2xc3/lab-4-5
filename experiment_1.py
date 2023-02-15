@@ -4,10 +4,10 @@ from graph import has_cycle
 
 NODE_CASES = [5, 10, 25, 50]
 STEPS = 25
-AVGS = 500
+AVGS = 5000
 
 if __name__ == "__main__":
-    proportions = list(range(0, 125, 125 // STEPS))
+    proportions = list(range(0, 101, 100 // STEPS))
 
     for num_nodes in NODE_CASES:
         plot.plot(
