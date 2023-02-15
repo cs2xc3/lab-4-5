@@ -48,7 +48,7 @@ Additionally, once the proportion of edges to nodes is slightly beyond 100\%, th
 
 \subsection{Experiment 2}
 
-Experiment 2 examines the probability of a graph being connected as the proportion of edges increases.
+Experiment 2 examines the probability of a graph being connected as the proportion of edges to nodes increases.
 
 We compute the approximate connected probability for a graph of $e$ edges and $n$ nodes by generating 500 random graphs with $e$ edges and $n$ nodes and determining what percentage of those graphs are connected.
 
@@ -85,7 +85,12 @@ This process is conducted for graphs with 5, 10, 25, and 50 nodes at different p
 
 \subsection{Maximum Independent Sets}
 
-
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{mvc_mis.png}
+    \caption{Relation between MVC and MIS}
+    \label{fig:mvc_mis}
+\end{figure}
 
 \appendix
 \section{Navigating the Code}

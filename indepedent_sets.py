@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plot
-from graph import Graph, MVC, MIS, max_unique_edges, create_random_graph
+from graph import MVC, MIS, max_unique_edges, create_random_graph
 
 # MIS function can be found in graph.py
 
