@@ -71,6 +71,6 @@ plot.plot([x + 4 for x in range(runs)], approx3_sums, label="Approximation 3")
 
 plot.title("Approximations vs Actual MVC (2)")
 plot.xlabel("Number of Nodes")
-plot.ylabel("Length of List of Vertex Cover")
+plot.ylabel("Expected Performance")
 plot.legend()
 plot.savefig("graphs/experiment_3_2.png")
