@@ -44,6 +44,7 @@ def max_unique_edges(i: int, self_loops = False) -> int:
         return (i - 1) * i // 2
     return i * (i + 1) // 2
 
+
 def create_random_graph(i: int, j: int) -> Graph:
     if j > max_unique_edges(i):
         raise ValueError(f'Cannot create {j} unique edges for {i} nodes')
@@ -106,7 +107,8 @@ def DFS(G, node1, node2):
                 S.append(node)
     return False
 
-#Depth First search remembering path
+
+# Depth First Search remembering path
 def DFS2(G, node1, node2):
     S = [node1]
     marked = {}
@@ -130,6 +132,7 @@ def DFS2(G, node1, node2):
                     return L
                 S.append(node)
 
+
 # Breadth First Search remembering path
 def BFS2(G, node1, node2):
     Q = deque([[node1]])
@@ -150,6 +153,8 @@ def BFS2(G, node1, node2):
                 marked[node] = True
     return []
 
+
+# Breadth First Search w/predecessor dictionary
 def BFS3(G, node):
     Q = deque([node])
     marked = {node: True}
@@ -167,6 +172,7 @@ def BFS3(G, node):
     return preDict
 
 
+# Depth First Search w/predecessor dictionary
 def DFS3(G, node):
     S = [node]
     marked = {}
@@ -282,3 +288,26 @@ def approx3(G: Graph) -> List[int]:
         C.append(node_b)
 
     return C
+
+# Independent Sets
+
+def is_independent_set(G: Graph, S: List[int]) -> bool:
+    if len(S) < 2:
+        return True
+
+    for i in range(1, len(S)):
+        if G.are_connected(S[0], S[i]):
+            return False
+
+    return is_independent_set(G, S[1:])
+
+
+# Maximum Independent Set
+def MIS(G: Graph) -> List[int]:
+    nodes = list(range(G.number_of_nodes()))
+    subsets = power_set(nodes)
+    subsets.sort(key=len, reverse=True)
+    for subset in subsets:
+        if is_independent_set(G, subset):
+            return subset
+
