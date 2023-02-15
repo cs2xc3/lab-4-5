@@ -1,5 +1,6 @@
 from collections import deque
 import random
+from typing import List
 
 # Undirected graph using an adjacency list
 class Graph:
@@ -30,10 +31,8 @@ class Graph:
         return len(self.adj)
 
     def copy(self):
-        new_graph = Graph(self.number_of_nodes())
-        for node_a in range(self.number_of_nodes()):
-            for node_b in self.adj[node_a]:
-                new_graph.add_edge(node_a, node_b)
+        new_graph = Graph(0)
+        new_graph.adj = [edges.copy() for edges in self.adj]
         return new_graph
 
 
@@ -59,11 +58,11 @@ def create_random_graph(i: int, j: int) -> Graph:
     while j > 0:
         node_a = random.choice(unsaturated_nodes)
 
-        if len(E.adj[node_a]) == 0:
+        if len(E.adjacent_nodes(node_a)) == 0:
             unsaturated_nodes.remove(node_a)
             continue
 
-        node_b = random.choice(E.adj[node_a])
+        node_b = random.choice(E.adjacent_nodes(node_a))
         G.add_edge(node_a, node_b)
         E.remove_edge(node_a, node_b)
         j -= 1
@@ -80,7 +79,7 @@ def BFS(G, node1, node2):
             marked[node] = False
     while len(Q) != 0:
         current_node = Q.popleft()
-        for node in G.adj[current_node]:
+        for node in G.adjacent_nodes(current_node):
             if node == node2:
                 return True
             if not marked[node]:
@@ -99,7 +98,7 @@ def DFS(G, node1, node2):
         current_node = S.pop()
         if not marked[current_node]:
             marked[current_node] = True
-            for node in G.adj[current_node]:
+            for node in G.adjacent_nodes(current_node):
                 if node == node2:
                     return True
                 S.append(node)
@@ -158,7 +157,7 @@ def BFS3(G, node):
             marked[n] = False
     while len(Q) != 0:
         current_node = Q.popleft()
-        for n in G.adj[current_node]:
+        for n in G.adjacent_nodes(current_node):
             if not marked[n]:
                 Q.append(n)
                 marked[n] = True
@@ -176,7 +175,7 @@ def DFS3(G, node):
         current_node = S.pop()
         if not marked[current_node]:
             marked[current_node] = True
-            for n in G.adj[current_node]:
+            for n in G.adjacent_nodes(current_node):
                 if not marked[n]:
                     preDict[n] = current_node
                 S.append(n)
@@ -205,7 +204,7 @@ def has_cycle(G):
                 marked[current_node] = True
                 # node has been visited, is connected so removed
                 nodes.remove(current_node)
-                for n in G.adj[current_node]:
+                for n in G.adjacent_nodes(current_node):
                     # if node has been visited and another node connects to it, cycle exists
                     if nodes.count(n) == 0 and preDict[current_node] != n:
                         return True
@@ -229,13 +228,13 @@ def power_set(set):
 
 def is_vertex_cover(G, C):
     for start in G.adj:
-        for end in G.adj[start]:
+        for end in G.adjacent_nodes(start):
             if not(start in C or end in C):
                 return False
     return True
 
 def MVC(G):
-    nodes = [i for i in range(G.get_size())]
+    nodes = [i for i in range(G.number_of_nodes())]
     subsets = power_set(nodes)
     min_cover = nodes
     for subset in subsets:
