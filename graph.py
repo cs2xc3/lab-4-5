@@ -120,7 +120,7 @@ def DFS2(G, node1, node2):
         downstep.append(G.adjacent_nodes(current_node))
         if not marked[current_node]:
             marked[current_node] = True
-            for node in G.adj[current_node]:
+            for node in G.adjacent_nodes(current_node):
                 if node == node2:
                     L.append(node)
                     if L.count(node1) > 1:
@@ -137,7 +137,7 @@ def BFS2(G, node1, node2):
             marked[node] = False
     while len(Q) != 0:
         current_path = Q.popleft()
-        for node in G.adj[current_path[-1]]:
+        for node in G.adjacent_nodes([current_path[-1]]):
             if node == node2:
                 current_path.append(node)
                 return current_path
@@ -213,7 +213,7 @@ def has_cycle(G):
                     S.append(n)
     return False
 
-#Use the methods below to determine minimum vertex covers
+# Use the methods below to determine minimum vertex covers
 
 def add_to_each(sets, element):
     copy = sets.copy()
@@ -244,13 +244,15 @@ def MVC(G):
     return min_cover
 
 # Approximations
+
 def approx2(G):
     nodeSet = []
+
     while not is_vertex_cover(G, nodeSet):
         v = random.randint(0, G.number_of_nodes())
         while v in nodeSet:
             v = random.randint(0, G.number_of_nodes())
         nodeSet.append(v)
-    print(nodeSet)
+
     return nodeSet
 
