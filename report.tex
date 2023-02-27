@@ -68,7 +68,6 @@ As seen in Figure \ref{fig:edges_vs_connected}, each graph sits at a 0\% chance 
 This is because the maximum number of unique edges --- and thus the number of ways the graph can be disconnected --- grows quadratically with the number of nodes. Specifically, a graph of $n$ nodes with no self-loops can have a maximum of $\Sigma_{i=0}^{n-1}i = \frac{(n - 1) \cdot n}{2}$ unique edges. This means a graph of 5 nodes has already reached it's maximum number of edges (10) by 200\%, while a graph of 50 nodes will not reach it's maximum number of edges (1225) until 2450\%.
 
 \section{Part 2}
-
 \subsection{Minimum Vertex Cover Approximation}
 Throughout all of the minimum vertex cover experiments, the accuracy of all approximation algorithms will be compared to the result of the minimum vertex cover algorithm provided. 
 
@@ -77,9 +76,9 @@ In the first experiment, we determined how each approximation algorithm's expect
 
 An approximation algorithm's expected performance was calculated by summing the output 1000 times for each test case and dividing it by the sum of the actual number of nodes in the minimum vertex cover. In mathematical notation, the expected performance of $approx1()$ was calculated by:
 \[ \sum_{n=1}^{1000} approx1(G_n) \quad \div \quad \sum_{n=1}^{1000} MVC(G_n)\]
-where $G_i$ represents the $ith$ random graph for a given test case.
+where $G_i$ represents the $ith$ random graph for a given test case. 
 
-The larger the expected performance, the further it was from the minimum vertex cover. For example, a value of 2 would mean that the algorithm's average output would be twice as long as the list of nodes in the minimum vertex cover. The lowest and best performance would be a value of 1, as this means the average approximate is the same length as the minimum vertex cover.
+The expected performance can also be viewed as the length of the approximation's output relative to the minimum vertex cover. The larger the expected performance, the further it was from the minimum vertex cover. For example, a value of 2 would mean that the algorithm's average output would be twice as long as the list of nodes in the minimum vertex cover. The lowest and best performance would be a value of 1, as this means the average approximate is the same length as the minimum vertex cover.
 
 \begin{figure}[H]
     \centering
@@ -96,7 +95,6 @@ The second approximation algorithm, $approx2()$ performed the worst in this expe
 The randomness of $approx2()$ is the main contributing factor to why its performance is so terrible. At its worst, the algorithm is expected to return an output that is three times the size of the minimum vertex cover! Since the algorithm has no intelligent way of selecting a node, for graphs with few edges, it is likely for the chosen node to be completely unconnected. Such unconnected edges contribute nothing to the vertex cover. As the number of edges increases, the chance of the algorithm choosing an unconnected node decreases, thus the performance of this algorithm improves.
 
 The third approximation algorithm, $approx3()$ fared better than $approx2()$ for the majority of the test cases until the very end. Similar to the second approximation algorithm, this algorithm relies on randomness and will likely add nodes that shouldn't be in the minimum vertex cover. However, since the algorithm is randomly selecting edges rather than nodes, it will never include unconnected nodes. Interestingly, this algorithm returns twice the number of nodes for the first 2 test cases. This is because a major downfall of this algorithm is that it can only return nodes in multiples of 2. For a graph with a minimum vertex cover with 1 node, this algorithm will always return 2 nodes. This is why this algorithm begins to perform worse than $approx2()$ for the last couple of test cases. In cases where the minimum vertex cover is 7 nodes, $approx2()$ will likely output 7 nodes, whereas $approx3()$ will always output 8 nodes.
-
 
 Overall, the first experiment shows that approximation algorithms will converge as edges approach the maximum number of unique edges in an undirected graph. Additionally, although all algorithms perform relatively accurately when given a graph with the maximum number of edges, $approx1()$ performs far better for most test cases, especially for graphs with few edges.
 
@@ -121,7 +119,7 @@ The second approximation algorithm, $approx2()$ performed the worst for the majo
 
 The third approximation algorithm, $approx3()$ fares better than approximation 2 mainly from it being more selective in its randomness. Since it randomly chooses an edge, it completely avoids choosing unconnected nodes, rather the extra performance comes from the fact that this algorithm can only output nodes in multiples of 2. Meaning, with graphs with few nodes in the minimum vertex cover, it is likely for this algorithm to add extra incident nodes that aren't part of the vertex cover. Hence why the algorithm's expected performance isn't as bad as approximation 2 as nodes grow.
 
-Overall, the second experiment showed that the approximation algorithms differ greatly as nodes increase. Approximation 1 is independent to the number of nodes present in the graph unless the graph's number of edges is the maximum number of edges for that number of nodes. Whereas, approximation 2 depends greatly on the number of nodes. Finally approximation 3 is dependent on the number of nodes but far less than approximation 2.
+Overall, the second experiment showed that the approximation algorithms differ greatly as nodes increase. Approximation 1 is independent of the number of nodes present in the graph unless the graph's number of edges is the maximum number of edges for that number of nodes. Whereas, approximation 2 depends greatly on the number of nodes. Finally, approximation 3 is dependent on the number of nodes but far less than approximation 2.
 
 \subsubsection{Experiment 3}
 
