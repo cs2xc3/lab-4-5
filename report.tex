@@ -125,7 +125,26 @@ Overall, the second experiment showed that the approximation algorithms differ g
 
 \subsubsection{Experiment 3}
 
+In the third experiment, we determined how each of the approximation algorithm's differed with an increasing number of nodes and a proportional number of edges. Each algorithm was tested against 8 cases, with the number of nodes increasing by 1 from 4 to 11. Additionally, the number of edges corresponding to each number of nodes was always the integer division by 2 of the number of nodes.
 
+The approximation algorithms' expected performances were calculated in the same way as Experiments 1 and 2. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{experiment_3_3.png}
+    \caption{The Expected Performance of Approximation Algorithms as Nodes Increase (with proportional edges)}
+    \label{fig:experiment_3_3}
+\end{figure
+
+As seen from Figure \ref{fig:experiment_3_3}, there is little change in the performance of all 3 algorithms as the number of nodes and corresponding edges increases.
+
+The first approximation algorithm, $approx1()$ performed the best in this experiment, similarly to experiments 1 and 2. The approximation provided exact results for cases with four nodes and two edges, and as the count increases remained very consistent, with only a slight incline in slope. In this case, $approx1()$ performs the best due to the aforementioned fact that the algorithm ignores unconnected nodes. This means that though the nodes and edges are increasing proportionally, due to the nature of the algorithm finding the vertex of the highest degree, it is able to consistently perform with similar proportional accuracy.
+
+The second approximation algorithm, $approx2()$ performed the worst in this experiment. This approximation performs the worst due to the random aspect of its implementation. This approximation also has the most growth in expected performance as the number of nodes and proportional edges increases. This is expected behaviour as an increase in the overall size of the graph provides more chance for randomness to cause unnecessary additions to the vertex cover, ultimately making it less accurate than the other approximations.
+
+The third approximation algorithm, $approx3()$ performed better than $approx2()$, yet worse than $approx1()$. The reason this algorithm performs better than $approx2()$ is due to the constraints on the experiment. As aforementioned the number of edges is proportional to the number of nodes at a factor of one-half. This means that the number of edges this algorithm will randomly select from is lesser than the number of nodes that $approx2()$ would randomly select from. However, it performs worse than $approx1()$, as it still has a randomness feature that continually causes unnecessary nodes to be added to the vertex cover because they were ajoined by the randomly selected edge. However, as the size of the graph increases (number of nodes and proportional edges) the approximation remains relatively similar. This is due to the fact that this algorithm also does not consider unconnected nodes, and with consistent probability the algorithm will select an edge that has at least one node integral to the vertex cover.
+
+Overall, the third experiment showed that the approximation algorithms differ from each other as nodes and edges increase. Additionally, it shows that with a proportional number of edges to nodes, the approximations perform consistently as the number of nodes increases. Approximation 1 is the least affected by this change in graph size, approximation 2 is the most affected - mostly due to the random node selection, and approximation 3 is significant less affected than approximation 2 due to the random edge vs node selection.
 
 \subsection{Maximum Independent Sets}
 
